@@ -1,4 +1,5 @@
 <?php
+putenv('ENVIRONMENT=production');
 // Detectar entorno
 $environment = getenv('ENVIRONMENT') ?: $_ENV['ENVIRONMENT'] ?? 'local';
 
