@@ -18,7 +18,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href=""inicio.php">
+            <a class="navbar-brand" href="https://crudpuertomar.onrender.com/inicio.php">
                 <i class="fas fa-ship me-2"></i>
                 <strong>PUERTO MAR</strong>
             </a>
