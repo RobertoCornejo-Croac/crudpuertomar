@@ -1,16 +1,14 @@
 <?php
-// Configuración para diferentes entornos
-$environment = getenv('ENVIRONMENT') ?: 'local';
+// Detectar entorno
+$environment = getenv('ENVIRONMENT') ?: $_ENV['ENVIRONMENT'] ?? 'local';
 
 if ($environment === 'production') {
-    // Configuración para servidor de producción
-    $host = getenv('DB_HOST') ?: 'localhost';
-    $port = getenv('DB_PORT') ?: '5432';
-    $dbname = getenv('DB_NAME') ?: 'crud_puertomar';
-    $user = getenv('DB_USER') ?: 'postgres';
-    $password = getenv('DB_PASSWORD') ?: '';
+    $host = getenv('DB_HOST') ?: $_ENV['DB_HOST'] ?? 'dpg-d240o8re5dus73b681tg-a';
+    $port = getenv('DB_PORT') ?: $_ENV['DB_PORT'] ?? '5432';
+    $dbname = getenv('DB_NAME') ?: $_ENV['DB_NAME'] ?? 'crud_puertomar';
+    $user = getenv('DB_USER') ?: $_ENV['DB_USER'] ?? 'crud_puertomar_user';
+    $password = getenv('DB_PASSWORD') ?: $_ENV['DB_PASSWORD'] ?? 'R6AiYKWfGIWYTlFYe3Gzaa8yHP5XE42L';
 } else {
-    // Configuración local
     $host = 'localhost';
     $port = '5432';
     $dbname = 'crud_puertomar';
@@ -23,11 +21,13 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    // En producción, no mostrar detalles del error
-    if ($environment === 'production') {
-        die("Error de conexión a la base de datos");
-    } else {
-        die("Error en la conexión: " . $e->getMessage());
-    }
+    header('Content-Type: application/json');
+    echo json_encode([
+        'success' => false,
+        'error' => $environment === 'production'
+            ? 'Error de conexión a la base de datos'
+            : 'Error en la conexión: ' . $e->getMessage()
+    ]);
+    exit;
 }
 ?>
