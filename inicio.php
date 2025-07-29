@@ -166,8 +166,9 @@
                     </h1>
                     <p class="lead">Gestiona tu flota pesquera de manera eficiente y profesional</p>
                 </div>
-                    <div class="col-md-4 text-center">
-                        <i class="fas fa-anchor" style="font-size: 4rem; opacity: 0.8;"></i>
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-anchor" style="font-size: 4rem; opacity: 0.8;"></i>
+                </div>
             </div>
         </div>
     </div>
